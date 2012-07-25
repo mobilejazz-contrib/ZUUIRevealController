@@ -274,7 +274,7 @@
 
 - (void)showFrontViewCompletely:(BOOL)completely
 {
-	if (self.currentFrontViewPosition != FrontViewPositionRightMost)
+	if (self.currentFrontViewPosition == FrontViewPositionLeft)
 	{
 		return;
 	}
@@ -576,9 +576,15 @@
 
 - (void)setFrontViewController:(UIViewController *)frontViewController animated:(BOOL)animated
 {
+	[self setFrontViewController:frontViewController animated:animated toggle:YES];
+}
+
+- (void)setFrontViewController:(UIViewController *)frontViewController animated:(BOOL)animated toggle:(BOOL)toggle
+{
 	if (nil != frontViewController && _frontViewController == frontViewController)
 	{
-		[self revealToggle:self];
+        if(toggle)
+            [self revealToggle:self];
 	}
 	else if (nil != frontViewController)
 	{
